@@ -1,0 +1,5 @@
+Item
+    Custo
+    Hora Trabalhada<Item>
+    List<Item> itensParaConfeccao
+	Calcula custo total
