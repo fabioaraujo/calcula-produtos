@@ -4,7 +4,7 @@ import br.com.fabioaraujo.calcula.produto.dto.{Item, Status}
 import org.springframework.web.bind.annotation._
 
 @RestController
-@RequestMapping(path = Array("item"))
+@RequestMapping(path = Array("scala/item"))
 class ItemController {
     @GetMapping(path = Array("/online"))
     @ResponseBody

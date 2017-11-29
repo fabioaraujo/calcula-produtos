@@ -1,3 +1,5 @@
 package br.com.fabioaraujo.calcula.produto.dto
 
-case class Status(online : String = "true")
+import scala.beans.BeanProperty
+
+case class Status(@BeanProperty var online : String = "true")
