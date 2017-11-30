@@ -2,7 +2,7 @@ package br.com.fabioaraujo.calcula.produto.dto
 
 import javax.persistence._
 
-import br.com.fabioaraujo.calcula.produto.dto.TipoUnidade.TipoUnidade
+import br.com.fabioaraujo.calcula.produto.dto.TipoUnidade
 
 import scala.beans.BeanProperty
 
@@ -13,7 +13,7 @@ class Item () extends Serializable{
   @BeanProperty var id : Long = _
   @BeanProperty var nome : String = _
   @BeanProperty var custo : Double = _
-  @BeanProperty var tipoUnidade : TipoUnidade = _
+  @BeanProperty @Enumerated(EnumType.STRING) var tipoUnidade : TipoUnidade = _
 
 
 }
