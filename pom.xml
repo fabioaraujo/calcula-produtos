@@ -53,9 +53,10 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-scala -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-scala</artifactId>
+            <artifactId>jackson-module-scala_2.12</artifactId>
         </dependency>
 
         <dependency>
