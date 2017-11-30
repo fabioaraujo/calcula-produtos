@@ -1,11 +1,19 @@
 package br.com.fabioaraujo.calcula.produto.dto
 
+import javax.persistence._
+
+import br.com.fabioaraujo.calcula.produto.dto.TipoUnidade.TipoUnidade
+
 import scala.beans.BeanProperty
 
-class Item extends Serializable  {
+@Entity
+class Item () extends Serializable{
+
+  @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @BeanProperty var id : Long = _
   @BeanProperty var nome : String = _
   @BeanProperty var custo : Double = _
-  @BeanProperty var horasTrabalhadas : Int = _
-  @BeanProperty var itens : Array [Item] = _
+  @BeanProperty var tipoUnidade : TipoUnidade = _
+
+
 }
