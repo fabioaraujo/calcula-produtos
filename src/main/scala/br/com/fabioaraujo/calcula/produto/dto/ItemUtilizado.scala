@@ -6,22 +6,25 @@ import scala.beans.BeanProperty
 
 @Entity
 class ItemUtilizado {
-  @BeanProperty @EmbeddedId var id : ItemUtilizadoId = new ItemUtilizadoId
-  @BeanProperty var quantidade : Int = _
-  @OneToOne @JoinColumn(insertable = false, updatable = false, name="ID_PRODUTO") var produto : Produto = _
-  @OneToOne @JoinColumn(insertable = false, updatable = false, name="ID_ITEM")var item: Item = _
+  @BeanProperty
+  @EmbeddedId var id: ItemUtilizadoId = new ItemUtilizadoId
+  @BeanProperty var quantidade: Int = _
+  @OneToOne
+  @JoinColumn(insertable = false, updatable = false, name = "ID_PRODUTO") var produto: Produto = _
+  @OneToOne
+  @JoinColumn(insertable = false, updatable = false, name = "ID_ITEM") var item: Item = _
 
-  def setItem(item: Item): Unit ={
+  def getItem: Item = item
+
+  def setItem(item: Item): Unit = {
     this.item = item
     id.idItem = item.id
   }
 
-  def getItem : Item = item
+  def getProduto: Produto = produto
 
-  def setProduto(produto: Produto): Unit ={
+  def setProduto(produto: Produto): Unit = {
     this.produto = produto
     id.idProduto = produto.id
   }
-
-  def getProduto : Produto = produto
 }

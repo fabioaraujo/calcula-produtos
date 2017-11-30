@@ -1,5 +1,5 @@
 package br.com.fabioaraujo.calcula.produto.dto;
 
-enum TipoUnidade{
-  METRO, UNIDADE;
-  }
+enum TipoUnidade {
+    METRO, UNIDADE;
+}

@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class ItemService(@Autowired val itemRepository: ItemRepository) {
-    def listItens(): java.lang.Iterable[Item] = {
-        itemRepository.findAll
-    }
+  def listItens(): java.lang.Iterable[Item] = {
+    itemRepository.findAll
+  }
 
-    def getItem(id: Long): Item = {
-        itemRepository.findOne(id)
-    }
+  def getItem(id: Long): Item = {
+    itemRepository.findOne(id)
+  }
 
-    def createItem(item: Item): Long = {
-        itemRepository.save(item)
-        item.id
-    }
+  def createItem(item: Item): Long = {
+    itemRepository.save(item)
+    item.id
+  }
 }

@@ -1,4 +1,6 @@
-package br.com.fabioaraujo.calcula.produto.config;
+package br.com.fabioaraujo.calcula.produto.config
+
+;
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -9,6 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(Array("br.com.fabioaraujo"))
 @EntityScan(Array("br.com.fabioaraujo"))
 class Application
+
 object Application extends App {
-    SpringApplication.run(classOf[Application]);
+  SpringApplication.run(classOf[Application]);
 }
