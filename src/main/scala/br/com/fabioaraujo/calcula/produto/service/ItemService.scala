@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ItemService(@Autowired val itemRepository: ItemRepository) {
+
   def listItens(): java.lang.Iterable[Item] = {
     itemRepository.findAll
   }
