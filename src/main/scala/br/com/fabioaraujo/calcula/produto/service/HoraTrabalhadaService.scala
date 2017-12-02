@@ -13,6 +13,7 @@ class HoraTrabalhadaService(@Autowired val horaTrabalhadaRepository: HoraTrabalh
   }
 
   def criar(horaTrabalhada: HoraTrabalhada): Long = {
+    horaTrabalhada.id = 1L
     horaTrabalhadaRepository.save(horaTrabalhada)
     horaTrabalhada.id
   }

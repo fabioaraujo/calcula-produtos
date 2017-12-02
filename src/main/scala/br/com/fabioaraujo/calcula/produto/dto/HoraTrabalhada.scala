@@ -7,6 +7,6 @@ import scala.beans.BeanProperty
 @Entity
 class HoraTrabalhada {
   @BeanProperty
-  @Id val id: Long = 1
-  @BeanProperty var custo: Double = 10.0
+  @Id var id: Long = _
+  @BeanProperty var custo: Double = _
 }
