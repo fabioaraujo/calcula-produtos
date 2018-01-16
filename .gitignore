@@ -3,3 +3,8 @@
 
 .idea/*
 target/*
+/target/
+.cache-main
+.classpath
+.project
+.settings/*
