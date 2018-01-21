@@ -19,7 +19,8 @@
 	    	$.get( "http://localhost:8080/item/listar", function( data ) {
 	    		  console.log(data);
 	    		  for(idx in data){
-	    			  $("#itens tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].tipoUnidade + "</td><td>" + data[idx].custo + "</td></tr>");
+	    			  $("#itens tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].tipoUnidade + "</td><td>" + data[idx].custo + 
+	    					  "</td><td><a href='#' onclick='editarItem(" + data[idx].id + ")'>Editar</a></td></tr>");
 	    		  }
 	    		});
 	    }
@@ -52,12 +53,27 @@
 	    	    success: function(data) { 
 	    	    	console.log(data);
 	    	    	carregaTabelaItens();
+	    	    	 limparItem();
 	    	    	
 	    	    },
 	    	    contentType: "application/json",
 	    	    dataType: 'json'
 	    	});
 	    	
+	    };
+	    
+	    var limparItem = function(){
+	    	$('#formItem').find("input[type=text], textarea, select").val("");
+	    };
+	    
+	    var editarItem = function(id){
+	    	$.get( "http://localhost:8080/item/getById?id=" + id, function( data ) {
+		    		  console.log(data);
+		    		  $('#formItem').find('input[name="id"]').val(data.id);
+		    		  $('#formItem').find('input[name="nome"]').val(data.nome); 
+		  	    	  $('#formItem').find('#tipoUnidadeItem').val(data.tipoUnidade);
+		  	    	  $('#formItem').find('input[name="custo"]').val(data.custo);
+	    		});
 	    };
 	    
 	    function getFormData($form){
@@ -81,35 +97,40 @@
        	<div>
        		<input type="button" value="Atualizar custo hora" onclick="atualizaHora()" />
        	</div>
-       	<h2>Itens</h2>
-       	<table id="itens">
-       		<thead>
-       			<tr>
-		       		<th>ID</th>
-		       		<th>nome</th>
-		       		<th>unidade</th>
-		       		<th>custo</th>
-	       		</tr>
-       		</thead>
-       		<tbody>
-       		
-       		</tbody>
-       	</table>
        	<div>
-       	<form id="formItem">
-       		<label>Cadastro Item</label>
-       		<label>Id Item</label>
-       		<div><input type="text" name="id" id="idItem" /></div>
-       		<label>Nome</label>
-       		<div><input type="text" name="nome" id="nomeItem" /></div>
-       		<label>Tipo Unidade</label>
-       		<div><select name="tipoUnidade" id="tipoUnidadeItem"><option>METRO</option><option>UNIDADE</option> </select></div>
-       		<label>Custo</label>
-       		<div><input type="text" name="custo" id="custoItem" /></div>
-       			<div>
-	       		<input type="button" value="Cria Item" onclick="criaItem()" />
+	       	<h2>Itens</h2>
+	       	<table id="itens" border="1">
+	       		<thead>
+	       			<tr>
+			       		<th>ID</th>
+			       		<th>nome</th>
+			       		<th>unidade</th>
+			       		<th>custo</th>
+			       		<th>Editar</th>
+		       		</tr>
+	       		</thead>
+	       		<tbody>
+	       		
+	       		</tbody>
+	       	</table>
+	       	<br /><br />
+	       	<div>
+	       	<form id="formItem">
+	       		<label>Cadastro Item</label><br />
+	       		<label>Id Item</label>
+	       		<div><input type="text" name="id" id="idItem" /></div>
+	       		<label>Nome</label>
+	       		<div><input type="text" name="nome" id="nomeItem" /></div>
+	       		<label>Tipo Unidade</label>
+	       		<div><select name="tipoUnidade" id="tipoUnidadeItem"><option>METRO</option><option>UNIDADE</option> </select></div>
+	       		<label>Custo</label>
+	       		<div><input type="text" name="custo" id="custoItem" /></div>
+	       			<div>
+		       		<input type="button" value="Cria Item" onclick="criaItem()" />
+		       		<input type="button" value="Limpar Item" onclick="limparItem()" />
+		       	</div>
+	       	</form>
 	       	</div>
-       	</form>
        	</div>
     </body>
 </html>
