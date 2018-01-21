@@ -10,7 +10,19 @@
 	    			  $("#horaTrabalhada").val(data.custo);
 	    		  }
 	    		});
+	    	
+	    	carregaTabelaItens();
 	    });
+	    
+	    var carregaTabelaItens = function(){
+	    	$("#itens tbody").empty();
+	    	$.get( "http://localhost:8080/item/listar", function( data ) {
+	    		  console.log(data);
+	    		  for(idx in data){
+	    			  $("#itens tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].tipoUnidade + "</td><td>" + data[idx].custo + "</td></tr>");
+	    		  }
+	    		});
+	    }
 	    
 	    var atualizaHora = function(){
 	    	$.ajax({
@@ -39,6 +51,8 @@
 	    	    	'", "tipoUnidade": "' + $('#formItem').find('#tipoUnidadeItem option:selected').val() + '", "custo": ' + $('#formItem').find('input[name="custo"]').val() + '}', // or JSON.stringify ({name: 'jonas'}),
 	    	    success: function(data) { 
 	    	    	console.log(data);
+	    	    	carregaTabelaItens();
+	    	    	
 	    	    },
 	    	    contentType: "application/json",
 	    	    dataType: 'json'
