@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=80 target/calcula-produto.jar 
+web: java -jar target/calcula-produto.jar 
