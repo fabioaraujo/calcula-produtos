@@ -1,1 +1,1 @@
-web: java -jar target/calcula-produto.jar -Drun.profiles=prod
+web: java -jar target/calcula-produto.jar
