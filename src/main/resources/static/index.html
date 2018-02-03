@@ -1,9 +1,9 @@
 <html>
     <head>
-    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="http://localhost:8080/js/jquery-3.2.1.js"></script>
     <script>
 	    $(document).ready(function(){
-	    	$.get( "/hora/get", function( data ) {
+	    	$.get( "http://localhost:8080/hora/get", function( data ) {
 	    		  console.log(data);
 	    		  if(data){
 	    			  $("#horaTrabalhada").val(data.custo);
@@ -15,7 +15,7 @@
 	    
 	    var carregaTabelaItens = function(){
 	    	$("#itens tbody").empty();
-	    	$.get( "/item/listar", function( data ) {
+	    	$.get( "http://localhost:8080/item/listar", function( data ) {
 	    		  console.log(data);
 	    		  for(idx in data){
 	    			  $("#itens tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].tipoUnidade + "</td><td>" + data[idx].custo + 
@@ -27,7 +27,7 @@
 	    var atualizaHora = function(){
 	    	$.ajax({
 	    	    type: 'POST',
-	    	    url: '/hora/atualizar',
+	    	    url: 'http://localhost:8080/hora/atualizar',
 	    	    data: '{"id" : 0, "custo": ' + $("#horaTrabalhada").val() + '}', // or JSON.stringify ({name: 'jonas'}),
 	    	    success: function(data) { 
 	    	    	console.log(data);
@@ -46,7 +46,7 @@
 	    	    	'", "tipoUnidade": "' + $('#formItem').find('#tipoUnidadeItem option:selected').val() + '", "custo": ' + $('#formItem').find('input[name="custo"]').val() + '}');
 	    	$.ajax({
 	    	    type: 'POST',
-	    	    url: '/item/criar',
+	    	    url: 'http://localhost:8080/item/criar',
 	    	    data: '{"id": ' + $('#formItem').find('input[name="id"]').val() + ', "nome": "' + $('#formItem').find('input[name="nome"]').val() + 
 	    	    	'", "tipoUnidade": "' + $('#formItem').find('#tipoUnidadeItem option:selected').val() + '", "custo": ' + $('#formItem').find('input[name="custo"]').val() + '}', // or JSON.stringify ({name: 'jonas'}),
 	    	    success: function(data) { 
@@ -66,7 +66,7 @@
 	    };
 	    
 	    var editarItem = function(id){
-	    	$.get( "/item/getById?id=" + id, function( data ) {
+	    	$.get( "http://localhost:8080/item/getById?id=" + id, function( data ) {
 		    		  console.log(data);
 		    		  $('#formItem').find('input[name="id"]').val(data.id);
 		    		  $('#formItem').find('input[name="nome"]').val(data.nome); 
