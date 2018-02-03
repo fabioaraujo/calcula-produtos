@@ -9,7 +9,7 @@ public class WelcomeController {
 
 	@GetMapping("/")
 	public ModelAndView welcome() {
-		return new ModelAndView("index");
+		return new ModelAndView("index.html");
 	}
 
 }
