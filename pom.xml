@@ -66,12 +66,9 @@
 			</build>
 		</profile>
 		<profile>
-			<id>dev</id>
+			<id>prod</id>
 			<activation>
-				<property>
-					<name>profile</name>
-					<value>prod</value>
-				</property>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<build>
 				<finalName>calcula-produto</finalName>

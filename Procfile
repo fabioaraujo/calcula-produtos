@@ -1,1 +1,1 @@
-web: java -Dprofile=prod -jar target/calcula-produto.jar
+web: java -jar target/calcula-produto.jar
