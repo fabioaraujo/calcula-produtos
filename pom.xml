@@ -23,12 +23,6 @@
 
 	<build>
 		<finalName>calcula-produto</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
 
 	<profiles>
@@ -54,13 +48,19 @@
 								</goals>
 								<configuration>
 									<target>
-										<delete file="${project.build.outputDirectory}/application.properties" />
-										<copy file="${project.build.outputDirectory}/application-dev.properties"
-												tofile="${project.build.outputDirectory}/application.properties" />
+										<delete
+											file="${project.build.outputDirectory}/application.properties" />
+										<copy
+											file="${project.build.outputDirectory}/application-dev.properties"
+											tofile="${project.build.outputDirectory}/application.properties" />
 									</target>
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
 					</plugin>
 				</plugins>
 			</build>
@@ -84,13 +84,19 @@
 								</goals>
 								<configuration>
 									<target>
-										<delete file="${project.build.outputDirectory}/application.properties" />
-										<copy file="${project.build.outputDirectory}/application-prod.properties"
-												tofile="${project.build.outputDirectory}/application.properties" />
+										<delete
+											file="${project.build.outputDirectory}/application.properties" />
+										<copy
+											file="${project.build.outputDirectory}/application-prod.properties"
+											tofile="${project.build.outputDirectory}/application.properties" />
 									</target>
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
 					</plugin>
 				</plugins>
 			</build>
