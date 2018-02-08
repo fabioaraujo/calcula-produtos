@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fabioaraujo.calcula.produto.dto.Produto;
+import br.com.fabioaraujo.calcula.produto.service.HoraTrabalhadaService;
 import br.com.fabioaraujo.calcula.produto.service.ProdutoService;
 
 @RestController
@@ -17,7 +18,9 @@ import br.com.fabioaraujo.calcula.produto.service.ProdutoService;
 class ProdutoController {
 	@Autowired 
 	private ProdutoService produtoService;
-
+	@Autowired 
+	private HoraTrabalhadaService horaTrabalhadaService;
+	
   @PostMapping("criar")
   @ResponseBody
   public Produto criar(@RequestBody Produto produto) {
@@ -35,6 +38,10 @@ class ProdutoController {
   @GetMapping("listar")
   @ResponseBody
   public Iterable<Produto> listar(){
-    return produtoService.listar();
+    Iterable<Produto> listar = produtoService.listar();
+    for (Produto produto : listar) {
+		produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
+	}
+	return listar;
   }
 }

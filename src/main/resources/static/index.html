@@ -11,6 +11,7 @@
 	    		});
 	    	
 	    	carregaTabelaItens();
+	    	carregaTabelaProdutos();
 	    });
 	    
 	    var carregaTabelaItens = function(){
@@ -20,6 +21,17 @@
 	    		  for(idx in data){
 	    			  $("#itens tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].tipoUnidade + "</td><td>" + data[idx].custo + 
 	    					  "</td><td><a href='#' onclick='editarItem(" + data[idx].id + ")'>Editar</a></td></tr>");
+	    		  }
+	    		});
+	    }
+	    
+	    var carregaTabelaProdutos = function(){
+	    	$("#produtos tbody").empty();
+	    	$.get( "/produto/listar", function( data ) {
+	    		  console.log("produto/listar" + data);
+	    		  for(idx in data){
+	    			  $("#produtos tbody").append("<tr><td>" + data[idx].id + "</td><td>" + data[idx].nome + "</td><td>" + data[idx].horasTrabalhadas + "</td><td>" + data[idx].custoTotal + 
+	    					  "</td><td><a href='#' onclick='editarProduto(" + data[idx].id + ")'>Editar</a></td></tr>");
 	    		  }
 	    		});
 	    }
@@ -61,8 +73,32 @@
 	    	
 	    };
 	    
+	    var criaProduto = function(){
+	    	console.log('{"id": ' + $('#formProduto').find('input[name="id"]').val() + ', "nome": "' + $('#formProduto').find('input[name="nome"]').val() + 
+	    	    	'", "horasTrabalhadas": ' + $('#formProduto').find('input[name="horasTrabalhadas"]').val() + '}');
+	    	$.ajax({
+	    	    type: 'POST',
+	    	    url: '/produto/criar',
+	    	    data: '{"id": ' + $('#formProduto').find('input[name="id"]').val() + ', "nome": "' + $('#formProduto').find('input[name="nome"]').val() + 
+    	    	'", "horasTrabalhadas": ' + $('#formProduto').find('input[name="horasTrabalhadas"]').val() + '}', // or JSON.stringify ({name: 'jonas'}),
+	    	    success: function(data) { 
+	    	    	console.log(data);
+	    	    	carregaTabelaProdutos();
+	    	    	 limparProduto();
+	    	    	
+	    	    },
+	    	    contentType: "application/json",
+	    	    dataType: 'json'
+	    	});
+	    	
+	    };
+	    
 	    var limparItem = function(){
 	    	$('#formItem').find("input[type=text], textarea, select").val("");
+	    };
+	    
+	    var limparProduto = function(){
+	    	$('#formProduto').find("input[type=text], textarea, select").val("");
 	    };
 	    
 	    var editarItem = function(id){
@@ -72,6 +108,16 @@
 		    		  $('#formItem').find('input[name="nome"]').val(data.nome); 
 		  	    	  $('#formItem').find('#tipoUnidadeItem').val(data.tipoUnidade);
 		  	    	  $('#formItem').find('input[name="custo"]').val(data.custo);
+	    		});
+	    };
+	    
+	    var editarProduto = function(id){
+	    	$.get( "/produto/getById?id=" + id, function( data ) {
+		    		  console.log(data);
+		    		  $('#formProduto').find('input[name="id"]').val(data.id);
+		    		  $('#formProduto').find('input[name="nome"]').val(data.nome); 
+		  	    	  $('#formProduto').find('input[name="horasTrabalhadas"]').val(data.horasTrabalhadas);
+		  	    	  $('#formProduto').find('input[name="custoTotal"]').val(data.custoTotal);
 	    		});
 	    };
 	    
@@ -88,7 +134,7 @@
     </script>
     </head>
     <body>
-        <h1>C�lcula Produtos</h1>
+        <h1>Cálcula Produtos</h1>
        	<div>
        		<span><label for="horaTrabalhada">Valor da hora Trabalhada:</label></span>
        		<input type="text" name="horaTrabalhada" id="horaTrabalhada">
@@ -127,6 +173,41 @@
 	       			<div>
 		       		<input type="button" value="Cria Item" onclick="criaItem()" />
 		       		<input type="button" value="Limpar Item" onclick="limparItem()" />
+		       	</div>
+	       	</form>
+	       	</div>
+       	</div>
+       	<div>
+	       	<h2>Produtos</h2>
+	       	<table id="produtos" border="1">
+	       		<thead>
+	       			<tr>
+			       		<th>ID</th>
+			       		<th>nome</th>
+			       		<th>horas trabalhadas</th>
+			       		<th>custo total</th>
+			       		<th>Editar</th>
+		       		</tr>
+	       		</thead>
+	       		<tbody>
+	       		
+	       		</tbody>
+	       	</table>
+	       	<br /><br />
+	       	<div>
+	       	<form id="formProduto">
+	       		<label>Cadastro de produtos</label><br />
+	       		<label>Id Produto</label>
+	       		<div><input type="text" name="id" id="idProduto" /></div>
+	       		<label>Nome</label>
+	       		<div><input type="text" name="nome" id="nomeProduto" /></div>
+	       		<label>Horas trabalhadas</label>
+	       		<div><input type="text" name="horasTrabalhadas" id="horasTrabalhadasProduto" /></div>
+	       		<label>Custo</label>
+	       		
+	       		<div>
+		       		<input type="button" value="Cria Produto" onclick="criaProduto()" />
+		       		<input type="button" value="Limpar Produto" onclick="limparProduto()" />
 		       	</div>
 	       	</form>
 	       	</div>
