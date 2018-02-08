@@ -26,7 +26,7 @@ public class Produto {
 	@Transactional
 	public Double getCustoTotal() {
 		Double custoTotal = 0.0D;
-		if (horasTrabalhadas != null) {
+		if (horasTrabalhadas != null && custoHora != null) {
 			custoTotal = horasTrabalhadas * custoHora.getCusto();
 		}
 		if (itens != null && itens.size() > 0) {
