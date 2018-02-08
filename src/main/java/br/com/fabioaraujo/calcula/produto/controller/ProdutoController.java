@@ -26,13 +26,16 @@ class ProdutoController {
   public Produto criar(@RequestBody Produto produto) {
     Long id = produtoService.criar(produto);
     produto.setId(id);
+    produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
     return produto;
   }
 
   @GetMapping("getById")
   @ResponseBody
   public Produto getProduto(@RequestParam Long id) {
-    return produtoService.getProduto(id);
+    Produto produto = produtoService.getProduto(id);
+    produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
+	return produto;
   }
 
   @GetMapping("listar")
