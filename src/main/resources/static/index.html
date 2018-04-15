@@ -11,6 +11,7 @@
 	    		});
 	    	
 	    	carregaTabelaItens();
+	    	carregaComboItens();
 	    	carregaTabelaProdutos();
 	    });
 	    
@@ -24,6 +25,16 @@
 	    		  }
 	    		});
 	    }
+
+	    var carregaComboItens = function(){
+	        $("#itensCombo").empty();
+	    	$.get( "/item/listar", function( data ) {
+              console.log(data);
+             $.each(data,function(idx, json){
+                    $("#itensCombo").append('<option value=' + json.id + '>' + json.nome + '</option>');
+                });
+            });
+	    };
 	    
 	    var carregaTabelaProdutos = function(){
 	    	$("#produtos tbody").empty();
@@ -64,6 +75,7 @@
 	    	    success: function(data) { 
 	    	    	console.log(data);
 	    	    	carregaTabelaItens();
+	    	    	carregaComboItens();
 	    	    	 limparItem();
 	    	    	
 	    	    },
@@ -134,7 +146,7 @@
     </script>
     </head>
     <body>
-        <h1>Cálcula Produtos</h1>
+        <h1>C&aacute;lcula Produtos</h1>
        	<div>
        		<span><label for="horaTrabalhada">Valor da hora Trabalhada:</label></span>
        		<input type="text" name="horaTrabalhada" id="horaTrabalhada">
@@ -204,7 +216,11 @@
 	       		<label>Horas trabalhadas</label>
 	       		<div><input type="text" name="horasTrabalhadas" id="horasTrabalhadasProduto" /></div>
 	       		<label>Custo</label>
-	       		
+                <div>
+                    <select id="itensCombo" name="itensCombo" size="10">
+
+                    </select>
+                </div>
 	       		<div>
 		       		<input type="button" value="Cria Produto" onclick="criaProduto()" />
 		       		<input type="button" value="Limpar Produto" onclick="limparProduto()" />
