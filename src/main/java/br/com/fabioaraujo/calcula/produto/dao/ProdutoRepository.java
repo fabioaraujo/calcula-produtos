@@ -7,5 +7,5 @@ import br.com.fabioaraujo.calcula.produto.dto.Produto;
 
 @Repository
 public interface ProdutoRepository extends CrudRepository<Produto, Long> {
-  public Produto findItemByNome(String nome);
+  public Produto findProdutoByNome(String nome);
 }
