@@ -13,6 +13,13 @@ public class ItemUtilizadoId implements Serializable {
 
 	@Column(name = "ID_ITEM") 
 	private Long idItem;
+	
+	public ItemUtilizadoId() {}
+	
+	public ItemUtilizadoId(Long idProduto, Long idItem) {
+		this.idProduto = idProduto;
+		this.idItem = idItem;		
+	}
 
 	public Long getIdProduto() {
 		return idProduto;

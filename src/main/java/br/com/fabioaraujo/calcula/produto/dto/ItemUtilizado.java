@@ -15,6 +15,12 @@ public class ItemUtilizado {
 	@OneToOne
 	@JoinColumn(insertable = false, updatable = false, name = "ID_ITEM") Item item;
 
+	public ItemUtilizado() {}
+	
+	public ItemUtilizado(ItemUtilizadoId id, Integer quantidade) {
+		this.id = id;
+		this.quantidade = quantidade;
+	}
 
 	public ItemUtilizadoId getId() {
 		return id;
