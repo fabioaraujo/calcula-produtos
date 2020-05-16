@@ -13,7 +13,7 @@ public class HoraTrabalhadaService {
 	private HoraTrabalhadaRepository horaTrabalhadaRepository;
 
 	public HoraTrabalhada getHora() {
-		return horaTrabalhadaRepository.findOne(1L);
+		return horaTrabalhadaRepository.findById(1L).orElse(null);
 	}
 
 	public Long criar(HoraTrabalhada horaTrabalhada) {

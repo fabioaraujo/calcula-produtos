@@ -17,7 +17,7 @@ public class ItemService {
 
 	public Item getItem(Long id) {
 
-		return itemRepository.findOne(id);
+		return itemRepository.findById(id).orElse(null);
 	}
 
 	public Long createItem(Item item) {

@@ -17,7 +17,7 @@ public class ProdutoService {
   }
 
   public Produto getProduto(Long id) {
-    return produtoRepository.findOne(id);
+    return produtoRepository.findById(id).orElse(null);
   }
 
   public Long criar(Produto produto) {
