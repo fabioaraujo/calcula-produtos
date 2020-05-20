@@ -13,7 +13,7 @@ import br.com.fabioaraujo.calcula.produto.dto.Item;
 import br.com.fabioaraujo.calcula.produto.service.ItemService;
 
 @RestController
-@RequestMapping("item")
+@RequestMapping("itens")
 class ItemController {
 	
 	@Autowired 
