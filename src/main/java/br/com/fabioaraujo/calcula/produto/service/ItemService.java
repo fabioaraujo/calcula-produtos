@@ -21,7 +21,7 @@ public class ItemService {
 	}
 
 	public Long createItem(Item item) {
-		itemRepository.save(item);
+		item = itemRepository.save(item);
 		return item.getId();
 	}
 }

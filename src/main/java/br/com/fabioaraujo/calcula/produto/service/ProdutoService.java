@@ -21,7 +21,7 @@ public class ProdutoService {
   }
 
   public Long criar(Produto produto) {
-    produtoRepository.save(produto);
+    produto = produtoRepository.save(produto);
     return produto.getId();
   }
 }
