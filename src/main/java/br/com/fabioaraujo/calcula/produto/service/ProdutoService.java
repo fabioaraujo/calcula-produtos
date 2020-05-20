@@ -1,5 +1,7 @@
 package br.com.fabioaraujo.calcula.produto.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,8 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 	 
 
-  public Iterable<Produto> listar(){
-    return produtoRepository.findAll();
+  public List<Produto> listar(){
+    return (List<Produto>) produtoRepository.findAll();
   }
 
   public Produto getProduto(Long id) {
