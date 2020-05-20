@@ -6,7 +6,7 @@
 
 	<groupId>br.com.fabioaraujo</groupId>
 	<artifactId>calcula-produto</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,6 +19,7 @@
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>ISO-8859-1</project.reporting.outputEncoding>
 		<java.version>11</java.version>
+		<start-class>br.com.fabioaraujo.calcula.produto.config.Application</start-class>
 	</properties>
 
 	<dependencies>
@@ -100,4 +101,13 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
