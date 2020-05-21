@@ -35,7 +35,7 @@ class ProdutoController {
 		produtoDTO.setId(null);
 		Produto produto = save(produtoDTO);
 		UriComponents uriComponents = MvcUriComponentsBuilder.fromMethodName(
-				ItemController.class, "getProduto", produto.getId()).build();
+				ProdutoController.class, "getProduto", produto.getId()).build();
 		URI uri = uriComponents.toUri();
 		return ResponseEntity.created(uri).build();
 	}
@@ -59,7 +59,8 @@ class ProdutoController {
 	@ResponseBody
 	public ResponseEntity<Produto> getProduto(@PathVariable("id") Long id) {
 		Produto produto = produtoService.getProduto(id);
-		produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
+		if(produto != null)
+			produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
 		return ResponseEntity.ok(produto);
 	}
 
