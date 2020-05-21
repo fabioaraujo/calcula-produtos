@@ -1,6 +1,9 @@
 package br.com.fabioaraujo.calcula.produto.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ItemUtilizadoDTO {
+	@JsonProperty("id")
 	private Long idItem;
 	private Integer quantidade;
 	

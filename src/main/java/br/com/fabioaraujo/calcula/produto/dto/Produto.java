@@ -3,6 +3,7 @@ package br.com.fabioaraujo.calcula.produto.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Produto {
 	private Long id = 0L;
 	private String nome= "";
 	private Integer horasTrabalhadas = 0;
-	@OneToMany(mappedBy = "produto")
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
 	private List<ItemUtilizado> itens = new ArrayList<>();
 	@Transient
 	private HoraTrabalhada custoHora;
