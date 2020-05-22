@@ -1,24 +1,24 @@
 package br.com.fabioaraujo.calcula.produto.dto;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
-public class Item implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemDTO {
 	private Long id;
 	private String nome;
 	private Double custo;
-
-	@Enumerated(EnumType.STRING) private TipoUnidade tipoUnidade;
+	private TipoUnidade tipoUnidade;
+	private Integer quantidade;
+	
+	public ItemDTO() { }
+	
+	public ItemDTO(Item item, Integer quantidade) {
+		this.id = item.getId();
+		this.nome = item.getNome();
+		this.custo = item.getCusto();
+		this.tipoUnidade = item.getTipoUnidade();
+		this.quantidade = quantidade;
+	}
 
 	public Long getId() {
 		return id;
@@ -52,9 +52,13 @@ public class Item implements Serializable {
 		this.tipoUnidade = tipoUnidade;
 	}
 
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", nome=" + nome + ", custo=" + custo + ", tipoUnidade=" + tipoUnidade + "]";
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	
 }

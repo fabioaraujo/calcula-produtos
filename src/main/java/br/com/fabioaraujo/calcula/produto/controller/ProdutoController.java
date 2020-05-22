@@ -1,7 +1,9 @@
 package br.com.fabioaraujo.calcula.produto.controller;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponents;
 
+import br.com.fabioaraujo.calcula.produto.dto.HoraTrabalhada;
 import br.com.fabioaraujo.calcula.produto.dto.Produto;
 import br.com.fabioaraujo.calcula.produto.dto.ProdutoDTO;
+import br.com.fabioaraujo.calcula.produto.dto.ProdutoDTOResponse;
 import br.com.fabioaraujo.calcula.produto.service.HoraTrabalhadaService;
 import br.com.fabioaraujo.calcula.produto.service.ProdutoService;
 
@@ -57,20 +61,23 @@ class ProdutoController {
 
 	@GetMapping("/{id}")
 	@ResponseBody
-	public ResponseEntity<Produto> getProduto(@PathVariable("id") Long id) {
+	public ResponseEntity<ProdutoDTOResponse> getProduto(@PathVariable("id") Long id) {
 		Produto produto = produtoService.getProduto(id);
 		if(produto != null)
 			produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
-		return ResponseEntity.ok(produto);
+		return ResponseEntity.ok(produto.toDTO());
 	}
 
 	@GetMapping()
 	@ResponseBody
-	public ResponseEntity<List<Produto>> listar(){
+	public ResponseEntity<List<ProdutoDTOResponse>> listar(){
 		List<Produto> listar = produtoService.listar();
-		for (Produto produto : listar) {
-			produto.setCustoHoraTrabalhada(horaTrabalhadaService.getHora());
-		}
-		return ResponseEntity.ok(listar);
+		final HoraTrabalhada custoHora = horaTrabalhadaService.getHora();
+		List<ProdutoDTOResponse> retorno = listar.stream().map(p -> {
+			p.setCustoHoraTrabalhada(custoHora);
+			return p.toDTO();
+		}).collect(Collectors.toList());
+		
+		return ResponseEntity.ok(retorno);
 	}
 }

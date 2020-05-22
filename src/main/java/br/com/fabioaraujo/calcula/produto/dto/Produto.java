@@ -2,6 +2,7 @@ package br.com.fabioaraujo.calcula.produto.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -68,7 +69,20 @@ public class Produto {
 		this.itens = itens;
 	}
 
-public void setCustoHoraTrabalhada(HoraTrabalhada custoHora) {
-	this.custoHora = custoHora;
-}
+	public void setCustoHoraTrabalhada(HoraTrabalhada custoHora) {
+		this.custoHora = custoHora;
+	}
+
+	public ProdutoDTOResponse toDTO() {
+		ProdutoDTOResponse response = new ProdutoDTOResponse();
+		response.setHorasTrabalhadas(horasTrabalhadas);
+		response.setId(id);
+		response.setNome(getNome());
+		
+		List<ItemDTO> itensResponse = itens.stream().map(i -> new ItemDTO(i.getItem(), i.getQuantidade())).collect(Collectors.toList());
+		response.setItens(itensResponse);
+				
+		return response;
+	}
+
 }
