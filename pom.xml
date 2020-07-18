@@ -18,7 +18,6 @@
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>ISO-8859-1</project.reporting.outputEncoding>
-		<java.version>11</java.version>
 		<start-class>br.com.fabioaraujo.calcula.produto.config.Application</start-class>
 	</properties>
 
@@ -51,7 +50,6 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.4.1212</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
